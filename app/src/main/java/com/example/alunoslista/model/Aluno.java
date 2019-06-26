@@ -1,6 +1,8 @@
 package com.example.alunoslista.model;
 
-public class Aluno {
+import java.io.Serializable;
+
+public class Aluno implements Serializable {
     private String nome;
     private String curso;
     private String foto;

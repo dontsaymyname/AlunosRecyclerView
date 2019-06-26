@@ -1,17 +1,19 @@
 package com.example.alunoslista;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.alunoslista.Adapter.AlunosAdapter;
+import com.example.alunoslista.interfaces.AlunosListener;
 import com.example.alunoslista.model.Aluno;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AlunosListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,20 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+
+    @Override
+    public void onAlunoClicado(Aluno aluno) {
+        Intent intent = new Intent(this, AlunoDetalhe.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("ALUNO", aluno);
+
+        intent.putExtras(bundle);
+
+        startActivity(intent);
 
     }
 }

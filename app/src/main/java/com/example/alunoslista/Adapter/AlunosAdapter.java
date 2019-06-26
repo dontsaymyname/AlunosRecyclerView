@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.alunoslista.R;
+import com.example.alunoslista.interfaces.AlunosListener;
 import com.example.alunoslista.model.Aluno;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 public class AlunosAdapter extends RecyclerView.Adapter<AlunosAdapter.ViewHolder>{
 
     private List<Aluno> listaAluno;
+    private AlunosListener alunosListener;
 
     public AlunosAdapter (List<Aluno> listaAluno){
         this.listaAluno = listaAluno;
@@ -32,8 +34,17 @@ public class AlunosAdapter extends RecyclerView.Adapter<AlunosAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
-    Aluno aluno = listaAluno.get(i);
+    final Aluno aluno = listaAluno.get(i);
     viewHolder.setupAluno(aluno);
+
+    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            alunosListener.onAlunoClicado(aluno);
+        }
+    });
+
+
 
     }
 
